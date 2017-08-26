@@ -33,18 +33,14 @@ def portScan(targetHost,targetPorts):
 		connScan(targetHost,int(targetPort))
 
 
-def main():
-	parser = argparse.ArgumentParser(description="Rafi Ahmad -H <target host> -p <target port>")
-	parser.add_argument('-H', metavar='targetHost', type=str,help='specify target host',required=True)
-	parser.add_argument('-P', metavar='targetPort', type=str,help='specify target port[s] separated by comma',required=True)
+if __name__ == '__main__':
+	parser = argparse.ArgumentParser(description="Port Scanning usage -host <target host> -port <target port>")
+	parser.add_argument('--host',type=str, help='specify target host', required=True)
+	parser.add_argument('--port',type=str, help='specify target port[s] separated by comma', required=True)
 	args = parser.parse_args()
-	targetHost = args.H
-	targetPorts = str(args.P).split(',')
-	if targetHost==None or targetPorts==None:
-		print '[-] You must specify a target and ports[s].'
-		exit(0)
+	targetHost = args.host
+	targetPorts = str(args.port).split(',')
+	
 	portScan(targetHost,targetPorts)
 	
-if __name__=='__main__':
-	main()
 
